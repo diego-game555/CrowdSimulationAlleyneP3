@@ -9,17 +9,17 @@ public class DropCylinder : MonoBehaviour
 
     void Start()
     {
-        agents = GameObject.FindGameObjectWithTag("agent");
+        agents = GameObject.FindGameObjectsWithTag("agent");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo;
-            Ray ray = Camera.main.ScreenPointtoRay(Input.mousePosition);
-            if (Physics.Raycasr(ray.origin, ray.direction, out hitInfo))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
             {
                 Instantiate(obstacle, hitInfo.point, obstacle.transform.rotation);
                 foreach (GameObject a in agents)
