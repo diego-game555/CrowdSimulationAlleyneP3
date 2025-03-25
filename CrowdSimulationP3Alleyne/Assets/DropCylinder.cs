@@ -6,7 +6,7 @@ public class DropCylinder : MonoBehaviour
 {
     public GameObject obstacle;
     GameObject[] agents;
-
+    // Start is called before the first frame update
     void Start()
     {
         agents = GameObject.FindGameObjectsWithTag("agent");
@@ -19,10 +19,10 @@ public class DropCylinder : MonoBehaviour
         {
             RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
+            if(Physics.Raycast(ray.origin, ray.direction, out hitInfo))
             {
                 Instantiate(obstacle, hitInfo.point, obstacle.transform.rotation);
-                foreach (GameObject a in agents)
+                foreach(GameObject a in agents)
                 {
                     a.GetComponent<AIControl>().DetectNewObstacle(hitInfo.point);
                 }
